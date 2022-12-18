@@ -1,0 +1,41 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& v, int k) {
+        int n=v.size();
+        map<int,int>mp;
+        
+        pair<int,int>p[100005];
+          vector<int>ans1;
+        vector<int>ans;
+        for(int i=0;i<n;i++)
+        {
+            mp[v[i]]++;
+        }
+        for(int i=0;i<n;i++)
+        {
+            p[i].first=mp[v[i]];
+            p[i].second=v[i];
+        }
+        sort(p,p+n);
+        reverse(p,p+n);
+        ans.push_back(p[0].second);
+        int cnt=0;
+        for(int i=1;i<n;i++)
+        {
+            if(p[i].second!=ans[cnt])
+            {
+                ans.push_back(p[i].second);
+                cnt++;
+            }
+            
+         
+        }
+        int i=0;
+        while(k--)
+        {
+            ans1.push_back(ans[i]);
+            i++;
+        }
+        return ans1;
+    }
+};
